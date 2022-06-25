@@ -1,27 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState("HOME");
 
     const toggleMenu = (event) => {
         setIsOpen((isOpen) => !isOpen);
     };
 
-    const activePage = (event) => {
+    useEffect(() => {
         const pages = document.querySelectorAll(".nav-item");
 
         pages.forEach((page) => {
-            page.style.borderRight = "none";
-        });
+            page.style.border = "none";
 
-        event.target.style.borderRight = "4px solid var(--light)";
+            if (page.href === document.URL) {
+                if (window.innerWidth <= 768) {
+                    page.style.borderRight = "4px solid var(--light)";
+                } else {
+                    page.style.borderBottom = "4px solid var(--light)";
+                }
+            }
+        });
+    }, [currentPage]);
+
+    const activePage = (event) => {
+        setCurrentPage(event.target.innerText);
     };
 
     return (
         <Nav>
-            <Logo to="/"></Logo>
+            <Logo onClick={activePage} to="/"></Logo>
             <MenuIcon open={isOpen} onClick={toggleMenu}></MenuIcon>
             <List open={isOpen}>
                 <ListItem to="/" className="nav-item" onClick={activePage}>
@@ -57,7 +68,7 @@ const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 25px;
     z-index: 10;
 `;
 
@@ -71,6 +82,7 @@ const Logo = styled(Link)`
 
     @media (min-width: 1024px) {
         margin-top: 8rem;
+        margin-left: 2rem;
     }
 `;
 
@@ -136,9 +148,8 @@ const List = styled.div`
 
     @media (min-width: 1024px) {
         margin-top: 4rem;
-        padding-right: 10rem;
         gap: 4rem;
-        inset: 0 0 0 45%;
+        inset: 0 0 0 40%;
     }
 `;
 

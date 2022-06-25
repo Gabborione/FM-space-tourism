@@ -11,6 +11,9 @@ function App() {
                 <Header />
                 <Routes>
                     <Route exact path="/" />
+                    <Route exact path="/destination" />
+                    <Route exact path="/crew" />
+                    <Route exact path="/technology" />
                 </Routes>
             </Router>
         </div>
