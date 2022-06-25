@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=DM+Sans:wght@400;700&family=Epilogue:wght@500;700&family=Manrope:wght@800&family=Overpass:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;400&family=Bellefair&family=DM+Sans:wght@400;700&family=Epilogue:wght@500;700&family=Manrope:wght@800&family=Overpass:wght@400;700&display=swap');
+
+:root{
+  --dark: hsl(230, 35% , 7%);
+  --cyan: hsl(231, 77%, 90%);
+  --light: hsl(0, 0%, 100%);
+
+  font-family: "Barlow Condensed", sans-serif;
+
+  --heading-1: 150px;
+  --heading-2: 100px;
+  --heading-3: 56px;
+  --heading-4: 32px;
+  --heading-5: 28px;
+  
+  --subheading-1: 28px;
+  --subheading-2: 14px;
+
+  --navtext: 16px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+ 
+}
+
+h1{
+  font-family: "Bellefair", serif;
 }
