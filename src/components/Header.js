@@ -12,22 +12,22 @@ const Header = () => {
 
     useEffect(() => {
         const pages = document.querySelectorAll(".nav-item");
-
         pages.forEach((page) => {
-            page.style.border = "none";
-
             if (page.href === document.URL) {
                 if (window.innerWidth <= 768) {
                     page.style.borderRight = "4px solid var(--light)";
                 } else {
                     page.style.borderBottom = "4px solid var(--light)";
                 }
+            } else {
+                page.style.border = "";
             }
         });
     }, [currentPage]);
 
     const activePage = (event) => {
         setCurrentPage(event.target.innerText);
+        setIsOpen((isOpen) => !isOpen);
     };
 
     return (
@@ -74,7 +74,7 @@ const Nav = styled.nav`
 
 const Logo = styled(Link)`
     position: relative;
-    width: 50px;
+    width: 45px;
     aspect-ratio: 1;
     background: url("images/shared/logo.svg") no-repeat;
     background-position: center;
@@ -88,7 +88,7 @@ const Logo = styled(Link)`
 
 const MenuIcon = styled.button`
     position: relative;
-    width: 35px;
+    width: 30px;
     aspect-ratio: 1;
     z-index: 999;
     display: flex;
@@ -166,6 +166,7 @@ const ListItem = styled(Link)`
     cursor: pointer;
 
     &:hover {
+        border-bottom: none;
         border-right: 4px solid hsl(0, 0%, 40%);
     }
 
