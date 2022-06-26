@@ -43,15 +43,16 @@ const Container = styled.div`
     }
 
     @media (min-width: 1024px) {
-        width: 100%;
-        height: 100%;
+        width: 80%;
+        height: 80%;
         padding-top: 0;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 10em;
+        gap: 5em;
         max-width: none;
-        margin: 0;
+        padding-top: 20em;
+        bottom: 0;
     }
 `;
 
@@ -73,7 +74,9 @@ const TextContainer = styled.div`
     }
 
     @media (min-width: 1024px) {
-        flex-basis: 50%;
+        margin-left: 5rem;
+        align-items: flex-start;
+        justify-content: center;
     }
 `;
 
@@ -86,11 +89,22 @@ const Subtitle = styled.h2`
     @media (min-width: 768px) {
         font-size: clamp(1.5rem, 5vw, 2em);
     }
+
+    @media (min-width: 1024px) {
+        text-align: start;
+    }
 `;
 
 const Title = styled.h1`
     text-align: center;
     font-size: clamp(6rem, 20vw, var(--heading-1));
+
+    @media (min-width: 1024px) {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        text-align: start;
+    }
 `;
 
 const Text = styled.p`
@@ -102,13 +116,21 @@ const Text = styled.p`
     margin-bottom: 2rem;
 
     @media (min-width: 768px) {
-        line-height: clamp(3rem, 3vh, 4em);
+        line-height: clamp(2em, 5vh, 3em);
 
-        font-size: clamp(1.5rem, 5vw, 2em);
+        font-size: clamp(1.5rem, 5vw, 1.5em);
+    }
+
+    @media (min-width: 1024px) {
+        line-height: 1.7em;
+        text-align: start;
+        font-size: 1.3em;
+        max-width: 500px;
     }
 `;
 
 const ButtonContainer = styled.div`
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,6 +162,6 @@ const Button = styled.button`
     }
 
     @media (min-width: 768px) {
-        width: 300px;
+        width: 250px;
     }
 `;
