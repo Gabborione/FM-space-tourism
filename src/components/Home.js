@@ -26,19 +26,13 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
     max-width: 100vw;
     max-height: 100vh;
     background: url("images/home/background-home-mobile.jpg") no-repeat center
         center fixed;
     background-size: cover;
-
-    @media (min-width: 1024px) {
-        background: url("images/home/background-home-desktop.jpg") no-repeat
-            center center fixed;
-        background-size: cover;
-    }
 
     display: flex;
     flex-direction: column;
@@ -50,23 +44,24 @@ const Container = styled.div`
     gap: clamp(0.5rem, 1vh, 2vh);
 
     @media (min-width: 768px) {
-        padding-top: clamp(8rem, 20vh, 15vh);
+        padding-top: clamp(5rem, 5vh, 15vh);
         max-width: 600px;
         margin: auto;
         gap: clamp(1rem, 5vh, 1.5rem);
     }
 
     @media (min-width: 1024px) {
-        width: 80%;
-        height: 80%;
-        padding-top: 0;
+        background: url("images/home/background-home-desktop.jpg") no-repeat
+            center center fixed;
+        background-size: cover;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         gap: 5em;
         max-width: none;
-        padding-top: 25em;
-        bottom: 0;
+        padding-top: 20em;
+        padding-left: 15em;
+        padding-right: 15em;
     }
 `;
 
@@ -83,11 +78,12 @@ const TextContainer = styled.div`
     @media (min-width: 768px) {
         gap: 1rem;
         max-width: 600px;
-        margin: auto;
-        gap: clamp(1rem, 5vh, 1.5rem);
+        margin: 0;
+        gap: clamp(1rem, 5vh, 1rem);
     }
 
     @media (min-width: 1024px) {
+        padding: 0;
         align-items: flex-start;
         justify-content: center;
     }
@@ -149,6 +145,7 @@ const ButtonContainer = styled.div`
     align-items: center;
     @media (min-width: 1024px) {
         flex-basis: 50%;
+        justify-content: flex-end;
     }
 `;
 

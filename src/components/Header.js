@@ -11,6 +11,17 @@ const Header = () => {
     };
 
     useEffect(() => {
+        const overlay = document.querySelector(".overlay");
+        if (isOpen) {
+            overlay.style.display = "block";
+            document.body.style.overflowY = "hidden";
+        } else {
+            overlay.style.display = "none";
+            document.body.style.overflowY = "unset";
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
         const pages = document.querySelectorAll(".nav-item");
         pages.forEach((page) => {
             if (page.href === document.URL) {
@@ -27,11 +38,12 @@ const Header = () => {
 
     const activePage = (event) => {
         setCurrentPage(event.target.innerText);
-        setIsOpen((isOpen) => !isOpen);
+        setIsOpen(false);
     };
 
     return (
         <Nav>
+            <Overlay className="overlay"></Overlay>
             <Logo onClick={activePage} to="/"></Logo>
             <MenuIcon open={isOpen} onClick={toggleMenu}></MenuIcon>
             <List open={isOpen}>
@@ -59,6 +71,15 @@ const Header = () => {
         </Nav>
     );
 };
+
+const Overlay = styled.div`
+    display: none;
+    min-width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    background-color: transparent;
+    z-index: 40;
+`;
 
 const Nav = styled.nav`
     position: fixed;

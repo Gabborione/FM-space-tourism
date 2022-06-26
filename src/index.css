@@ -40,14 +40,33 @@ body {
 }
 
 h1{
+  text-transform: uppercase;
   font-family: "Bellefair", serif;
   font-weight: 400;
+  font-size: clamp(6rem, 20vw, var(--heading-1));
 }
 
 h2{
+  text-transform: uppercase;
   font-weight: 400;
+  font-size: clamp(1rem, 3vw, var(--heading-4));
+  letter-spacing: 4.75px;
+
+    @media (min-width: 768px) {
+        font-size: clamp(1.5rem, 5vw, 2em);
+    }
 }
 
 p{
   font-weight: 200;
+  font-size: clamp(1.1rem, 2vw, var(--heading-4));
+    letter-spacing: 1.2px;
+
+    @media (min-width: 768px) {
+        font-size: clamp(1.5rem, 5vw, 1.5em);
+    }
+
+    @media (min-width: 1024px) {
+        font-size: 1.3em;
+    }
 }
