@@ -9,7 +9,7 @@ background-size: cover;
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .App{
     background: url("../public/images/home/background-home-desktop.jpg") no-repeat center center fixed;
   background-size: cover;
