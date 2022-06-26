@@ -26,6 +26,20 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    background: url("images/home/background-home-mobile.jpg") no-repeat center
+        center fixed;
+    background-size: cover;
+
+    @media (min-width: 1024px) {
+        background: url("images/home/background-home-desktop.jpg") no-repeat
+            center center fixed;
+        background-size: cover;
+    }
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +65,7 @@ const Container = styled.div`
         align-items: center;
         gap: 5em;
         max-width: none;
-        padding-top: 20em;
+        padding-top: 25em;
         bottom: 0;
     }
 `;
@@ -74,7 +88,6 @@ const TextContainer = styled.div`
     }
 
     @media (min-width: 1024px) {
-        margin-left: 5rem;
         align-items: flex-start;
         justify-content: center;
     }
