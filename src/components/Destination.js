@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Destination = () => {
+    const [planets, setPlanets] = useState([]);
+    const [planet, setPlanet] = useState({});
+
+    useEffect(() => {
+        const getPlanetsData = async () => {
+            await fetch("data.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    let planets = data.destinations;
+
+                    let planet = planets.map((planet) => ({
+                        name: planet.name,
+                        images: planet.images,
+                        description: planet.description,
+                        distance: planet.distance,
+                        travel: planet.travel,
+                    }));
+
+                    setPlanets(planets);
+                    setPlanet(planets[0]);
+                });
+        };
+
+        getPlanetsData();
+    }, []);
+
+    const handleChange = (event) => {
+        planets.forEach((planet) => {
+            if (planet.name.toUpperCase() === event.target.innerText) {
+                setPlanet(planet);
+            }
+        });
+    };
+
     return (
         <Container>
             <Header>
@@ -11,30 +45,35 @@ const Destination = () => {
                     </SubTitle>
                 </SubTitleContainer>
                 <ImageContainer>
-                    <img src="images/destination/image-moon.webp" alt="Moon" />
+                    <img
+                        src={
+                            planet.name !== undefined ? planet.images.webp : ""
+                        }
+                        alt={planet.name}
+                    />
                 </ImageContainer>
             </Header>
             <Body>
                 <Menu>
-                    <MenuItem>MOON</MenuItem>
-                    <MenuItem>MARS</MenuItem>
-                    <MenuItem>EUROPA</MenuItem>
-                    <MenuItem>TITAN</MenuItem>
+                    {planets.length > 0
+                        ? planets.map((value, index) => {
+                              return (
+                                  <MenuItem onClick={handleChange} key={index}>
+                                      {value.name}
+                                  </MenuItem>
+                              );
+                          })
+                        : null}
                 </Menu>
-                <Title>MOON</Title>
-                <Text>
-                    See our planet as you’ve never seen it before. A perfect
-                    relaxing trip away to help regain perspective and come back
-                    refreshed. While you’re there, take in some history by
-                    visiting the Luna 2 and Apollo 11 landing sites.
-                </Text>
+                <Title>{planet.name}</Title>
+                <Text>{planet.description}</Text>
 
                 <Divider />
 
                 <InfoText>Avg. distance</InfoText>
-                <InfoNumber>384,400 km</InfoNumber>
+                <InfoNumber>{planet.distance}</InfoNumber>
                 <InfoText>est. travel time</InfoText>
-                <InfoNumber>3 days</InfoNumber>
+                <InfoNumber>{planet.travel}</InfoNumber>
             </Body>
         </Container>
     );
@@ -106,6 +145,7 @@ const Menu = styled.ul`
 `;
 
 const MenuItem = styled.li`
+    text-transform: uppercase;
     color: var(--cyan);
     letter-spacing: 1.2px;
 `;
