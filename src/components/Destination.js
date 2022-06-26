@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+const defaultPlanet = {
+    name: "Moon",
+    images: {
+        png: "images/destination/image-moon.png",
+        webp: "images/destination/image-moon.webp",
+    },
+    description:
+        "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
+    distance: "384,400 km",
+    travel: "3 days",
+};
+
 const Destination = () => {
     const [planets, setPlanets] = useState([]);
-    const [planet, setPlanet] = useState({});
+    const [planet, setPlanet] = useState(defaultPlanet);
 
     useEffect(() => {
         const getPlanetsData = async () => {
@@ -130,6 +142,17 @@ const Container = styled.div`
         background-size: cover;
         padding-top: 9em;
     }
+
+    @media (min-width: 1024px) {
+        background: url("images/destination/background-destination-desktop.jpg")
+            no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        padding-top: 8em;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const Header = styled.div`
@@ -138,12 +161,22 @@ const Header = styled.div`
     justify-content: flex-start;
     align-items: center;
     gap: 1.5em;
+
+    @media (min-width: 1024px) {
+        flex-basis: 50%;
+        gap: 5em;
+    }
 `;
 
 const SubTitleContainer = styled.div`
     @media (min-width: 768px) {
         width: 100vw;
         padding-left: 25px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 100%;
+        padding-left: 10vw;
     }
 `;
 
@@ -169,6 +202,10 @@ const ImageContainer = styled.div`
     @media (min-width: 768px) {
         width: 250px;
     }
+
+    @media (min-width: 1024px) {
+        width: 450px;
+    }
 `;
 
 const Number = styled.span`
@@ -182,6 +219,12 @@ const Body = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    @media (min-width: 1024px) {
+        flex-basis: 50%;
+        align-items: flex-start;
+        text-align: left;
+    }
 `;
 
 const Menu = styled.ul`

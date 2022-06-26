@@ -60,8 +60,8 @@ const Container = styled.div`
         gap: 5em;
         max-width: none;
         padding-top: 20em;
-        padding-left: 15em;
-        padding-right: 15em;
+        padding-left: 15vw;
+        padding-right: 15vw;
     }
 `;
 
