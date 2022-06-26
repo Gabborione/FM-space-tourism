@@ -194,6 +194,7 @@ const ListItem = styled(Link)`
     @media (min-width: 768px) {
         width: auto;
         height: 100%;
+        border-bottom: 4px solid transparent;
 
         &:hover {
             border-right: none;

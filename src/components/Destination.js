@@ -22,16 +22,34 @@ const Destination = () => {
 
                     setPlanets(planets);
                     setPlanet(planets[0]);
+                    activeMenu();
                 });
         };
 
         getPlanetsData();
     }, []);
 
+    const activeMenu = async () => {
+        let items = document.querySelectorAll(".item");
+        items.forEach((item, index) => {
+            if (index === 0) {
+                item.style.borderBottom = "3px solid var(--light)";
+            } else item.style.borderBottom = "";
+        });
+    };
+
     const handleChange = (event) => {
         planets.forEach((planet) => {
+            let items = document.querySelectorAll(".item");
+
+            items.forEach((item) => {
+                if (item.innerText !== event.target.innerText)
+                    item.style.borderBottom = "unset";
+            });
+
             if (planet.name.toUpperCase() === event.target.innerText) {
                 setPlanet(planet);
+                event.target.style.borderBottom = "3px solid var(--light)";
             }
         });
     };
@@ -58,7 +76,11 @@ const Destination = () => {
                     {planets.length > 0
                         ? planets.map((value, index) => {
                               return (
-                                  <MenuItem onClick={handleChange} key={index}>
+                                  <MenuItem
+                                      className="item"
+                                      onClick={handleChange}
+                                      key={index}
+                                  >
                                       {value.name}
                                   </MenuItem>
                               );
@@ -148,6 +170,14 @@ const MenuItem = styled.li`
     text-transform: uppercase;
     color: var(--cyan);
     letter-spacing: 1.2px;
+    cursor: pointer;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 3px solid transparent;
+
+    &:hover {
+        border-bottom: 3px solid hsl(0, 0%, 40%);
+    }
 `;
 
 const Title = styled.h1`
