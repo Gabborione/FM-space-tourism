@@ -92,10 +92,16 @@ const Destination = () => {
 
                 <Divider />
 
-                <InfoText>Avg. distance</InfoText>
-                <InfoNumber>{planet.distance}</InfoNumber>
-                <InfoText>est. travel time</InfoText>
-                <InfoNumber>{planet.travel}</InfoNumber>
+                <Info>
+                    <InfoGroup>
+                        <InfoText>Avg. distance</InfoText>
+                        <InfoNumber>{planet.distance}</InfoNumber>
+                    </InfoGroup>
+                    <InfoGroup>
+                        <InfoText>est. travel time</InfoText>
+                        <InfoNumber>{planet.travel}</InfoNumber>
+                    </InfoGroup>
+                </Info>
             </Body>
         </Container>
     );
@@ -117,6 +123,13 @@ const Container = styled.div`
     padding: 25px;
     padding-top: 6em;
     gap: 2rem;
+
+    @media (min-width: 768px) {
+        background: url("images/destination/background-destination-tablet.jpg")
+            no-repeat center center fixed;
+        background-size: cover;
+        padding-top: 9em;
+    }
 `;
 
 const Header = styled.div`
@@ -127,11 +140,20 @@ const Header = styled.div`
     gap: 1.5em;
 `;
 
-const SubTitleContainer = styled.div``;
+const SubTitleContainer = styled.div`
+    @media (min-width: 768px) {
+        width: 100vw;
+        padding-left: 25px;
+    }
+`;
 
 const SubTitle = styled.h2`
     font-weight: 200;
     letter-spacing: 2.5px;
+
+    @media (min-width: 768px) {
+        text-align: left;
+    }
 `;
 
 const ImageContainer = styled.div`
@@ -142,6 +164,10 @@ const ImageContainer = styled.div`
         width: 100%;
         aspect-ratio: 1;
         object-fit: contain;
+    }
+
+    @media (min-width: 768px) {
+        width: 250px;
     }
 `;
 
@@ -178,17 +204,29 @@ const MenuItem = styled.li`
     &:hover {
         border-bottom: 3px solid hsl(0, 0%, 40%);
     }
+
+    @media (min-width: 768px) {
+        font-size: 1.2rem;
+    }
 `;
 
 const Title = styled.h1`
     font-size: var(--heading-3);
     margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+        font-size: var(--heading-2);
+    }
 `;
 
 const Text = styled.p`
     color: var(--cyan);
     line-height: 1.5em;
     margin-bottom: 2rem;
+
+    @media (min-width: 768px) {
+        max-width: 80%;
+    }
 `;
 
 const Divider = styled.hr`
@@ -198,6 +236,24 @@ const Divider = styled.hr`
     margin-bottom: 2rem;
 `;
 
+const Info = styled.div`
+    @media (min-width: 768px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5em;
+    }
+`;
+
+const InfoGroup = styled.div`
+    @media (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+`;
+
 const InfoText = styled.h3`
     text-transform: uppercase;
     color: var(--cyan);
@@ -205,12 +261,20 @@ const InfoText = styled.h3`
     font-weight: 200;
     letter-spacing: 2.5px;
     margin-bottom: 0.5rem;
+
+    @media (min-width: 768px) {
+        margin: 0;
+    }
 `;
 
 const InfoNumber = styled.h1`
     text-transform: uppercase;
     font-size: var(--heading-4);
     margin-bottom: 2rem;
+
+    @media (min-width: 768px) {
+        margin: 0;
+    }
 `;
 
 export default Destination;
