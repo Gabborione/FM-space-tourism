@@ -208,7 +208,7 @@ const ImageContainer = styled.div`
     }
 `;
 
-const Number = styled.span`
+export const Number = styled.span`
     font-weight: 400;
     color: hsl(0, 0%, 60%);
     margin-right: 2ch;

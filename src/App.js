@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Destination from "./components/Destination";
-// import Services from "./components/Services";
+import Crew from "./components/Crew";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
                         path="/destination"
                         element={<Destination />}
                     />
-                    <Route exact path="/crew" />
+                    <Route exact path="/crew" element={<Crew />} />
                     <Route exact path="/technology" />
                 </Routes>
             </Router>
