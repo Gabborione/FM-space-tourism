@@ -168,7 +168,7 @@ const Header = styled.div`
     }
 `;
 
-const SubTitleContainer = styled.div`
+export const SubTitleContainer = styled.div`
     @media (min-width: 768px) {
         width: 100vw;
         padding-left: 25px;
@@ -180,7 +180,7 @@ const SubTitleContainer = styled.div`
     }
 `;
 
-const SubTitle = styled.h2`
+export const SubTitle = styled.h2`
     font-weight: 200;
     letter-spacing: 2.5px;
 
