@@ -3,8 +3,66 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Number, SubTitleContainer, SubTitle } from ".//Destination.js";
 
+const defaultCrew = {
+    name: "Douglas Hurley",
+    images: {
+        png: "images/crew/image-douglas-hurley.png",
+        webp: "images/crew/image-douglas-hurley.webp",
+    },
+    role: "Commander",
+    bio: "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.",
+};
+
 const Crew = () => {
-    const [crews, setCrews] = useState({});
+    const [crews, setCrews] = useState([]);
+    const [crew, setCrew] = useState(defaultCrew);
+
+    useEffect(() => {
+        const getCrewsData = async () => {
+            await fetch("data.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    let crews = data.crew;
+
+                    let crew = crews.map((crew) => ({
+                        name: crew.name,
+                        images: crew.images,
+                        role: crew.role,
+                        bio: crew.bio,
+                    }));
+
+                    setCrews(crews);
+                    setCrew(crew[0]);
+                    activeMenu();
+                });
+        };
+
+        getCrewsData();
+    }, []);
+
+    const activeMenu = async () => {
+        let items = document.querySelectorAll(".item");
+        items.forEach((item, index) => {
+            if (index == 0) {
+                item.style.backgroundColor = "var(--light)";
+            } else item.style.backgroundColor = "hsl(0, 0%, 40%)";
+        });
+    };
+
+    const handleChange = (event) => {
+        crews.forEach((crew, index) => {
+            let items = document.querySelectorAll(".item");
+
+            items.forEach((item) => {
+                if (item.id !== event.target.id)
+                    item.style.backgroundColor = "hsl(0, 0%, 40%)";
+            });
+            if (index == event.target.id) {
+                setCrew(crew);
+                event.target.style.backgroundColor = "var(--light)";
+            }
+        });
+    };
 
     return (
         <Container>
@@ -15,25 +73,28 @@ const Crew = () => {
             </SubTitleContainerCrew>
             <Body>
                 <ImageContainer>
-                    <img src="images\crew\image-douglas-hurley.webp" />
+                    <img src={crew.images.webp} />
                     <hr />
                 </ImageContainer>
                 <TextContainer>
                     <ListContainer>
-                        <ListItem></ListItem>
-                        <ListItem></ListItem>
-                        <ListItem></ListItem>
-                        <ListItem></ListItem>
+                        {crews.length > 0
+                            ? crews.map((value, index) => {
+                                  return (
+                                      <ListItem
+                                          className="item"
+                                          onClick={handleChange}
+                                          key={index}
+                                          id={index}
+                                      ></ListItem>
+                                  );
+                              })
+                            : null}
                     </ListContainer>
                     <CrewInfo>
-                        <Role>COMMANDER</Role>
-                        <Name>Nome del tizio</Name>
-                        <Text>
-                            Douglas bla bla bla adòjsbdo adkjvbadkv adkjvba
-                            Douglas bla bla bla adòjsbdo adkjvbadkv adkjvba
-                            Douglas bla bla bla adòjsbdo adkjvbadkv adkjvba
-                            Douglas bla bla bla adòjsbdo adkjvbadkv adkjvba
-                        </Text>
+                        <Role>{crew.role}</Role>
+                        <Name>{crew.name}</Name>
+                        <Text>{crew.bio}</Text>
                     </CrewInfo>
                 </TextContainer>
             </Body>
