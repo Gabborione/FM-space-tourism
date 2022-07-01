@@ -22,7 +22,7 @@ const Crew = ({ crews }) => {
     const activeMenu = async () => {
         let items = document.querySelectorAll(".item");
         items.forEach((item, index) => {
-            if (index == 0) {
+            if (index === 0) {
                 item.style.backgroundColor = "var(--light)";
             } else item.style.backgroundColor = "";
         });

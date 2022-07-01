@@ -32,7 +32,6 @@ const Technology = ({ technologies }) => {
 
     useEffect(() => {
         let image = document.querySelector(".image");
-        console.log(window.innerWidth);
         if (window.innerWidth >= 1024) {
             image.src = technology.images.portrait;
         } else {
