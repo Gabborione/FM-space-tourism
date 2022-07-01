@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Destination from "./Destination";
 
 const Home = () => {
     return (
@@ -15,7 +17,7 @@ const Home = () => {
                 </Text>
             </TextContainer>
             <ButtonContainer>
-                <Button>
+                <Button to="/destination">
                     <h1>EXPLORE</h1>
                 </Button>
             </ButtonContainer>
@@ -149,7 +151,7 @@ const ButtonContainer = styled.div`
     }
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
     background-color: var(--light);
     border-radius: 50%;
     width: 220px;
@@ -158,6 +160,9 @@ const Button = styled.button`
     cursor: pointer;
     box-shadow: unset;
     transition: box-shadow 200ms ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     h1 {
         color: var(--dark);
