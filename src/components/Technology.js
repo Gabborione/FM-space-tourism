@@ -30,6 +30,16 @@ const Technology = ({ technologies }) => {
         activeMenu();
     }, []);
 
+    useEffect(() => {
+        let image = document.querySelector(".image");
+        console.log(window.innerWidth);
+        if (window.innerWidth >= 1024) {
+            image.src = technology.images.portrait;
+        } else {
+            image.src = technology.images.landscape;
+        }
+    }, [technology]);
+
     const activeMenu = async () => {
         let items = document.querySelectorAll(".item");
         items.forEach((item, index) => {
@@ -71,12 +81,17 @@ const Technology = ({ technologies }) => {
             <BodyTech>
                 <ImageContainer>
                     <img
-                        src={technology.images.landscape}
+                        className="image"
+                        src={
+                            window.innerWidth >= 1024
+                                ? technology.images.landscape
+                                : technology.images.portrait
+                        }
                         alt={technology.name}
                     />
                 </ImageContainer>
                 <TextContainerTech>
-                    <ListContainer>
+                    <MenuContainer>
                         {technologies !== undefined && technologies.length > 0
                             ? technologies.map((value, index) => {
                                   return (
@@ -91,11 +106,11 @@ const Technology = ({ technologies }) => {
                                   );
                               })
                             : null}
-                    </ListContainer>
+                    </MenuContainer>
                     <CrewInfo>
-                        <SubTitle>THE TERMINOLOGY</SubTitle>
-                        <Name>{technology.name}</Name>
-                        <Text>{technology.description}</Text>
+                        <SubTitle>THE TERMINOLOGY...</SubTitle>
+                        <NameTech>{technology.name}</NameTech>
+                        <TextTech>{technology.description}</TextTech>
                     </CrewInfo>
                 </TextContainerTech>
             </BodyTech>
@@ -115,14 +130,16 @@ const ContainerTech = styled(Container)`
     @media (min-width: 768px) {
         background: url("images/technology/background-technology-tablet.jpg")
             no-repeat center fixed;
-        justify-content: space-between;
+        justify-content: flex-start;
         padding-top: 9em;
         padding-bottom: 0;
+        gap: 2rem;
     }
 
     @media (min-width: 1024px) {
         background: url("images/technology/background-technology-desktop.jpg")
             no-repeat center fixed;
+        background-size: cover;
         display: flex;
         padding-top: 15%;
         justify-content: space-between;
@@ -141,14 +158,14 @@ const BodyTech = styled(Body)`
     align-items: center;
 
     @media (min-width: 768px) {
-        gap: 3rem;
+        gap: 1rem;
     }
 
     @media (min-width: 1024px) {
-        height: 100%;
+        margin-bottom: 10rem;
         flex-direction: row-reverse;
-        justify-content: center;
-        align-items: flex-end;
+        justify-content: space-between;
+        align-items: center;
     }
 `;
 
@@ -163,6 +180,17 @@ const ImageContainer = styled.div`
         width: 100%;
         height: 100%;
         object-fit: contain;
+    }
+
+    @media (min-width: 1024px) {
+        width: 50vw;
+        height: 60vh;
+        justify-content: flex-end;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
     }
 `;
 
@@ -181,10 +209,27 @@ export const TextContainerTech = styled(TextContainer)`
     }
 
     @media (min-width: 1024px) {
-        width: 50%;
+        width: 70%;
         gap: 3rem;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
         padding-left: 10%;
+    }
+`;
+
+const MenuContainer = styled(ListContainer)`
+    @media (min-width: 768px) {
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
     }
 `;
 
@@ -197,10 +242,36 @@ const MenuItem = styled(ListItem)`
     background-color: transparent;
     border: 1px solid hsl(0, 0%, 50%);
     font-weight: 400;
+
+    @media (min-width: 768px) {
+        width: 4rem;
+        font-size: 1.3rem;
+    }
+
+    @media (min-width: 1024px) {
+        width: 5rem;
+        font-size: 1.5rem;
+    }
 `;
 
 const SubTitle = styled(Role)`
     color: var(--cyan);
+
+    @media (min-width: 768px) {
+        font-size: 1.5rem;
+    }
+`;
+
+const NameTech = styled(Name)`
+    @media (min-width: 1024px) {
+        width: 90%;
+    }
+`;
+
+const TextTech = styled(Text)`
+    @media (min-width: 1024px) {
+        width: 90%;
+    }
 `;
 
 export default Technology;

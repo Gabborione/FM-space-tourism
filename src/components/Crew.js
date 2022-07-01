@@ -169,7 +169,7 @@ export const ImageContainer = styled.div`
     }
 
     @media (min-width: 768px) {
-        height: 50vh;
+        height: 45vh;
     }
 
     @media (min-width: 1024px) {
