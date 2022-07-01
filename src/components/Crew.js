@@ -45,7 +45,7 @@ const Crew = () => {
         items.forEach((item, index) => {
             if (index == 0) {
                 item.style.backgroundColor = "var(--light)";
-            } else item.style.backgroundColor = "hsl(0, 0%, 40%)";
+            } else item.style.backgroundColor = "";
         });
     };
 
@@ -106,7 +106,7 @@ const Container = styled.div`
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
-    max-height: 100%;
+    max-height: 100vh;
     background: url("images/crew/background-crew-mobile.jpg") no-repeat center
         fixed;
     background-size: cover;
@@ -118,6 +118,7 @@ const Container = styled.div`
     gap: 2rem;
     padding: 25px;
     padding-top: 6em;
+    overflow: hidden;
 
     @media (min-width: 768px) {
         background: url("images/crew/background-crew-tablet.jpg") no-repeat
@@ -133,9 +134,8 @@ const Container = styled.div`
             center center fixed;
         background-size: cover;
         display: flex;
-        padding-top: 8em;
-        flex-direction: row;
-        justify-content: center;
+        padding-top: 15%;
+        justify-content: space-between;
         align-items: center;
     }
 `;
@@ -149,7 +149,6 @@ const Body = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 25px;
 
     @media (min-width: 768px) {
         flex-direction: column-reverse;
@@ -159,10 +158,19 @@ const Body = styled.div`
     }
 
     @media (min-width: 1024px) {
+        height: 100%;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: flex-end;
     }
 `;
 
-const SubTitleContainerCrew = styled(SubTitleContainer)``;
+const SubTitleContainerCrew = styled(SubTitleContainer)`
+    @media (min-width: 1024px) {
+        width: 100vw;
+        padding-left: 10%;
+    }
+`;
 
 const ImageContainer = styled.div`
     width: 100%;
@@ -184,6 +192,22 @@ const ImageContainer = styled.div`
     @media (min-width: 768px) {
         height: 50vh;
     }
+
+    @media (min-width: 1024px) {
+        width: 50%;
+        height: 70vh;
+        display: flex;
+        align-items: flex-end;
+
+        img {
+            height: 100%;
+            object-fit: contain;
+        }
+
+        hr {
+            display: none;
+        }
+    }
 `;
 
 const TextContainer = styled.div`
@@ -200,6 +224,13 @@ const TextContainer = styled.div`
         width: 70%;
         margin: auto;
     }
+
+    @media (min-width: 1024px) {
+        width: 50%;
+        gap: 3rem;
+        align-items: flex-start;
+        padding-left: 10%;
+    }
 `;
 
 const ListContainer = styled.ul`
@@ -215,6 +246,14 @@ const ListItem = styled.li`
     border-radius: 50%;
     background-color: hsl(0, 0%, 40%);
     cursor: pointer;
+
+    &:hover {
+        background-color: hsl(0, 0%, 60%);
+    }
+
+    @media (min-width: 1024px) {
+        width: 1rem;
+    }
 `;
 
 const CrewInfo = styled.div`
@@ -227,6 +266,12 @@ const CrewInfo = styled.div`
     text-align: center;
     margin-top: 1rem;
     gap: 0.8rem;
+
+    @media (min-width: 1024px) {
+        align-items: flex-start;
+        width: 100%;
+        gap: 1rem;
+    }
 `;
 
 const Role = styled.h1`
@@ -237,6 +282,11 @@ const Role = styled.h1`
     @media (min-width: 768px) {
         font-size: var(--subheading-1);
     }
+
+    @media (min-width: 1024px) {
+        text-align: left;
+        font-size: var(--heading-4);
+    }
 `;
 
 const Name = styled.h1`
@@ -245,6 +295,11 @@ const Name = styled.h1`
 
     @media (min-width: 768px) {
         font-size: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+        text-align: left;
+        font-size: var(--heading-3);
     }
 `;
 
@@ -256,6 +311,11 @@ const Text = styled.p`
         line-height: 2rem;
         letter-spacing: 0.1rem;
         font-size: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+        text-align: left;
+        width: 80%;
     }
 `;
 

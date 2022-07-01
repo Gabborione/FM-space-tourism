@@ -25,7 +25,7 @@ const Header = () => {
         const pages = document.querySelectorAll(".nav-item");
         pages.forEach((page) => {
             if (page.href === document.URL) {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth < 768) {
                     page.style.borderRight = "4px solid var(--light)";
                 } else {
                     page.style.borderBottom = "4px solid var(--light)";
@@ -197,7 +197,7 @@ const ListItem = styled(Link)`
         border-bottom: 4px solid transparent;
 
         &:hover {
-            border-right: none;
+            border-right: none !important;
             border-bottom: 4px solid hsl(0, 0%, 40%);
         }
     }
