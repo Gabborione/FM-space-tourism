@@ -13,32 +13,11 @@ const defaultPlanet = {
     travel: "3 days",
 };
 
-const Destination = () => {
-    const [planets, setPlanets] = useState([]);
+const Destination = ({ planets }) => {
     const [planet, setPlanet] = useState(defaultPlanet);
 
     useEffect(() => {
-        const getPlanetsData = async () => {
-            await fetch("data.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    let planets = data.destinations;
-
-                    let planet = planets.map((planet) => ({
-                        name: planet.name,
-                        images: planet.images,
-                        description: planet.description,
-                        distance: planet.distance,
-                        travel: planet.travel,
-                    }));
-
-                    setPlanets(planets);
-                    setPlanet(planets[0]);
-                    activeMenu();
-                });
-        };
-
-        getPlanetsData();
+        activeMenu();
     }, []);
 
     const activeMenu = async () => {
@@ -85,7 +64,7 @@ const Destination = () => {
             </Header>
             <Body>
                 <Menu>
-                    {planets.length > 0
+                    {planets !== undefined && planets.length > 0
                         ? planets.map((value, index) => {
                               return (
                                   <MenuItem

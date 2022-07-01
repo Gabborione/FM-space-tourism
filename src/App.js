@@ -4,8 +4,23 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Destination from "./components/Destination";
 import Crew from "./components/Crew";
+import { useState, useEffect } from "react";
 
 function App() {
+    const [planets, setPlanets] = useState([]);
+
+    useEffect(() => {
+        const getPlanetsData = async () => {
+            await fetch("data.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    setPlanets(data.destinations);
+                });
+        };
+
+        getPlanetsData();
+    }, []);
+
     return (
         <div className="App">
             <Router>
@@ -15,7 +30,7 @@ function App() {
                     <Route
                         exact
                         path="/destination"
-                        element={<Destination />}
+                        element={<Destination planets={planets} />}
                     />
                     <Route exact path="/crew" element={<Crew />} />
                     <Route exact path="/technology" />
