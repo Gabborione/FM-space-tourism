@@ -8,17 +8,19 @@ import { useState, useEffect } from "react";
 
 function App() {
     const [planets, setPlanets] = useState([]);
+    const [crews, setCrews] = useState([]);
 
     useEffect(() => {
-        const getPlanetsData = async () => {
+        const getData = async () => {
             await fetch("data.json")
                 .then((response) => response.json())
                 .then((data) => {
                     setPlanets(data.destinations);
+                    setCrews(data.crew);
                 });
         };
 
-        getPlanetsData();
+        getData();
     }, []);
 
     return (
@@ -32,7 +34,11 @@ function App() {
                         path="/destination"
                         element={<Destination planets={planets} />}
                     />
-                    <Route exact path="/crew" element={<Crew />} />
+                    <Route
+                        exact
+                        path="/crew"
+                        element={<Crew crews={crews} />}
+                    />
                     <Route exact path="/technology" />
                 </Routes>
             </Router>

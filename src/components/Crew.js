@@ -13,31 +13,11 @@ const defaultCrew = {
     bio: "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.",
 };
 
-const Crew = () => {
-    const [crews, setCrews] = useState([]);
+const Crew = ({ crews }) => {
     const [crew, setCrew] = useState(defaultCrew);
 
     useEffect(() => {
-        const getCrewsData = async () => {
-            await fetch("data.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    let crews = data.crew;
-
-                    let crew = crews.map((crew) => ({
-                        name: crew.name,
-                        images: crew.images,
-                        role: crew.role,
-                        bio: crew.bio,
-                    }));
-
-                    setCrews(crews);
-                    setCrew(crew[0]);
-                    activeMenu();
-                });
-        };
-
-        getCrewsData();
+        activeMenu();
     }, []);
 
     const activeMenu = async () => {
@@ -78,7 +58,7 @@ const Crew = () => {
                 </ImageContainer>
                 <TextContainer>
                     <ListContainer>
-                        {crews.length > 0
+                        {crews !== undefined && crews.length > 0
                             ? crews.map((value, index) => {
                                   return (
                                       <ListItem
