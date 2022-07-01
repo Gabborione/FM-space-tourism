@@ -1,4 +1,3 @@
-import { findByLabelText } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Number, SubTitleContainer, SubTitle } from ".//Destination.js";
@@ -35,7 +34,7 @@ const Crew = ({ crews }) => {
 
             items.forEach((item) => {
                 if (item.id !== event.target.id)
-                    item.style.backgroundColor = "hsl(0, 0%, 40%)";
+                    item.style.backgroundColor = "";
             });
             if (index == event.target.id) {
                 setCrew(crew);
@@ -82,7 +81,7 @@ const Crew = ({ crews }) => {
     );
 };
 
-const Container = styled.div`
+export const Container = styled.div`
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
@@ -120,7 +119,7 @@ const Container = styled.div`
     }
 `;
 
-const Body = styled.div`
+export const Body = styled.div`
     min-width: 100vw;
     min-height: 100%;
     max-width: 100vw;
@@ -152,7 +151,7 @@ const SubTitleContainerCrew = styled(SubTitleContainer)`
     }
 `;
 
-const ImageContainer = styled.div`
+export const ImageContainer = styled.div`
     width: 100%;
     height: 32vh;
 
@@ -190,7 +189,7 @@ const ImageContainer = styled.div`
     }
 `;
 
-const TextContainer = styled.div`
+export const TextContainer = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
@@ -213,14 +212,14 @@ const TextContainer = styled.div`
     }
 `;
 
-const ListContainer = styled.ul`
+export const ListContainer = styled.ul`
     display: flex;
     justify-content: center;
     margin-top: 2rem;
     gap: 1.5rem;
 `;
 
-const ListItem = styled.li`
+export const ListItem = styled.li`
     width: 0.7rem;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -236,7 +235,7 @@ const ListItem = styled.li`
     }
 `;
 
-const CrewInfo = styled.div`
+export const CrewInfo = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
@@ -254,7 +253,7 @@ const CrewInfo = styled.div`
     }
 `;
 
-const Role = styled.h1`
+export const Role = styled.h1`
     font-size: var(--subheading-2);
     letter-spacing: 0.2rem;
     color: hsl(0, 0%, 60%);
@@ -269,7 +268,7 @@ const Role = styled.h1`
     }
 `;
 
-const Name = styled.h1`
+export const Name = styled.h1`
     font-size: var(--subheading-1);
     margin-bottom: 0.8rem;
 
@@ -283,9 +282,11 @@ const Name = styled.h1`
     }
 `;
 
-const Text = styled.p`
+export const Text = styled.p`
     color: var(--cyan);
     line-height: 1.5rem;
+    padding-left: 25px;
+    padding-right: 25px;
 
     @media (min-width: 768px) {
         line-height: 2rem;
@@ -296,6 +297,7 @@ const Text = styled.p`
     @media (min-width: 1024px) {
         text-align: left;
         width: 80%;
+        padding: 0;
     }
 `;
 

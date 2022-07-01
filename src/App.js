@@ -5,10 +5,12 @@ import Home from "./components/Home";
 import Destination from "./components/Destination";
 import Crew from "./components/Crew";
 import { useState, useEffect } from "react";
+import Technology from "./components/Technology";
 
 function App() {
     const [planets, setPlanets] = useState([]);
     const [crews, setCrews] = useState([]);
+    const [technologies, setTechnologies] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
@@ -17,6 +19,7 @@ function App() {
                 .then((data) => {
                     setPlanets(data.destinations);
                     setCrews(data.crew);
+                    setTechnologies(data.technology);
                 });
         };
 
@@ -39,7 +42,11 @@ function App() {
                         path="/crew"
                         element={<Crew crews={crews} />}
                     />
-                    <Route exact path="/technology" />
+                    <Route
+                        exact
+                        path="/technology"
+                        element={<Technology technologies={technologies} />}
+                    />
                 </Routes>
             </Router>
         </div>
