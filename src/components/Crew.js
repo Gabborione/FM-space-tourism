@@ -118,6 +118,26 @@ const Container = styled.div`
     gap: 2rem;
     padding: 25px;
     padding-top: 6em;
+
+    @media (min-width: 768px) {
+        background: url("images/crew/background-crew-tablet.jpg") no-repeat
+            center center fixed;
+        background-size: cover;
+        justify-content: space-between;
+        padding-top: 9em;
+        padding-bottom: 0;
+    }
+
+    @media (min-width: 1024px) {
+        background: url("images/crew/background-crew-desktop.jpg") no-repeat
+            center center fixed;
+        background-size: cover;
+        display: flex;
+        padding-top: 8em;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 `;
 
 const Body = styled.div`
@@ -130,6 +150,16 @@ const Body = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding: 0 25px;
+
+    @media (min-width: 768px) {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+    }
 `;
 
 const SubTitleContainerCrew = styled(SubTitleContainer)``;
@@ -150,6 +180,10 @@ const ImageContainer = styled.div`
         width: 80%;
         border: 1px solid hsl(0, 0%, 30%);
     }
+
+    @media (min-width: 768px) {
+        height: 50vh;
+    }
 `;
 
 const TextContainer = styled.div`
@@ -160,6 +194,12 @@ const TextContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     text-align: center;
+
+    @media (min-width: 768px) {
+        flex-direction: column-reverse;
+        width: 70%;
+        margin: auto;
+    }
 `;
 
 const ListContainer = styled.ul`
@@ -193,16 +233,30 @@ const Role = styled.h1`
     font-size: var(--subheading-2);
     letter-spacing: 0.2rem;
     color: hsl(0, 0%, 60%);
+
+    @media (min-width: 768px) {
+        font-size: var(--subheading-1);
+    }
 `;
 
 const Name = styled.h1`
     font-size: var(--subheading-1);
     margin-bottom: 0.8rem;
+
+    @media (min-width: 768px) {
+        font-size: 2.5rem;
+    }
 `;
 
 const Text = styled.p`
     color: var(--cyan);
     line-height: 1.5rem;
+
+    @media (min-width: 768px) {
+        line-height: 2rem;
+        letter-spacing: 0.1rem;
+        font-size: 1.5rem;
+    }
 `;
 
 export default Crew;
