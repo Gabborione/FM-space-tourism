@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    useRef,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -11,19 +16,24 @@ function App() {
     const [planets, setPlanets] = useState([]);
     const [crews, setCrews] = useState([]);
     const [technologies, setTechnologies] = useState([]);
+    const alreadyLoaded = useRef(false);
 
     useEffect(() => {
-        const getData = async () => {
-            await fetch("data.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    setPlanets(data.destinations);
-                    setCrews(data.crew);
-                    setTechnologies(data.technology);
-                });
-        };
+        if (!alreadyLoaded.current) {
+            const getData = async () => {
+                await fetch("data.json")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        setPlanets(data.destinations);
+                        setCrews(data.crew);
+                        setTechnologies(data.technology);
+                    });
+            };
 
-        getData();
+            getData();
+
+            alreadyLoaded.current = true;
+        }
     }, []);
 
     return (
